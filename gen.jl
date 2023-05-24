@@ -1,11 +1,11 @@
 
 BSON.@load "model.bson" ps st
 
-display_image(res1[1])
 
-noi=[q_sample(x,i) for i in [1,50,150]].|>cpu
+res=p_sample_loop(model,ps,st,(64,64,3,1))
 
-display_image(noi[1])
+
+display_image(res[1])
 
 
 unbatch(res)

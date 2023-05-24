@@ -24,4 +24,4 @@ for epoch = 1:100
 end
 
 
-BSON.@save "model.bson" ps=cpu(ps) st=cpu(st)
+BSON.@save "model8.bson" ps=cpu(ps) st=cpu(st)

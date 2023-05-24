@@ -11,12 +11,13 @@ alphas_cumprod_prev = pad_constant(alphas_cumprod[begin:end-1], (1,0), 1.)
 sqrt_recip_alphas = @. sqrt(1f0 / alphas)
 
 # calculations for diffusion q(x_t | x_{t-1}) and others
-sqrt_alphas_cumprod = sqrt.(alphas_cumprod) |>device
+sqrt_alphas_cumprod = sqrt.(alphas_cumprod) 
+# |>device
 sqrt_one_minus_alphas_cumprod =@. sqrt(1f0 - alphas_cumprod) 
-sqrt_one_minus_alphas_cumprod=device(sqrt_one_minus_alphas_cumprod)
+# sqrt_one_minus_alphas_cumprod=device(sqrt_one_minus_alphas_cumprod)
 # calculations for posterior q(x_{t-1} | x_t, x_0)
 posterior_variance =@. betas * (1f0 - alphas_cumprod_prev) / (1f0 - alphas_cumprod)
-posterior_variance=device(posterior_variance)
+# posterior_variance=device(posterior_variance)
 
 function q_sample(x_start, t, noise=nothing)
     if isnothing(noise)
@@ -72,4 +73,3 @@ function p_sample_loop(model,ps,st, shape)
     end
     imgs 
 end
-
